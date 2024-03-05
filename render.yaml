@@ -1,7 +1,7 @@
 databases:
   - name: collective_blog_db
     databaseName: collective_blog_db
-    user: postgres
+    user: blog
     plan: free
 
 services:
