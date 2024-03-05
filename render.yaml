@@ -1,0 +1,22 @@
+databases:
+  - name: collective-blog
+    databaseName: collective-blog
+    user: collective-blog
+    plan: free
+
+services:
+  - type: web
+    name: collective-blog
+    runtime: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "./bin/render-start.sh"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: collective-blog
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: WEB_CONCURRENCY
+        value: 2 # sensible default
