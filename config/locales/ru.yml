@@ -1,0 +1,13 @@
+ru:
+  # errors:
+  #   messages:
+  #     blank: не может быть пустым
+  # activerecord:
+  #   errors:
+  #     models:
+  #       user:
+  #         attributes:
+  #           email:
+  #             blank: не может быть пустым
+  #           password:
+  #             blank: не может быть пустым
