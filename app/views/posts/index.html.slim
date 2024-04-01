@@ -1,0 +1,4 @@
+h1 Коллективный блог
+.row
+  - @posts.each do |post|
+    = render 'post-card', post:
