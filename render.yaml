@@ -3,12 +3,14 @@ databases:
     databaseName: collective_blog_db
     user: blog
     plan: free
+    region: singapore
 
 services:
   - type: web
     name: collective_blog
     runtime: ruby
     plan: free
+    region: singapore
     buildCommand: "./bin/render-build.sh"
     startCommand: "./bin/render-start.sh"
     envVars:
