@@ -24,7 +24,6 @@ class PostsController < ApplicationController
       if @post.save
         format.html { redirect_to post_url(@post), notice: I18n.t('posts.create.success') }
       else
-        debugger
         format.html { render :new, status: :unprocessable_entity }
       end
     end
