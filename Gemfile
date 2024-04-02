@@ -47,7 +47,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 gem 'sentry-rails'
 gem 'sentry-ruby'
-gem 'slim'
+gem 'slim-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -85,3 +85,5 @@ end
 gem 'devise', '~> 4.9'
 
 gem 'simple_form', '~> 5.3'
+
+gem 'ancestry', '~> 4.3'

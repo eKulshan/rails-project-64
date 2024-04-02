@@ -11,7 +11,7 @@
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "command": "${workspaceFolder}/bin/rails",
-      "script": "server"
+      "script": "server",
     },
     {
       "type": "rdbg",

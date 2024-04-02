@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+first:
   title: MyString
   body: MyString
-  category: one
-  creator: one
+  category: first
+  creator: first
 
-two:
+second:
   title: MyString
   body: MyString
-  category: two
-  creator: two
+  category: second
+  creator: second

@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class HomeControllerTest < ActionDispatch::IntegrationTest
+class PostCommentTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

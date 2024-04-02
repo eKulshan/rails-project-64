@@ -1,0 +1,16 @@
+. id="comment-#{comment.id}" class ="card mt-2 rounded-0"
+  .card-header.border-0
+    = link_to '#', post_path(comment.post, anchor: "comment-#{comment.id}"), class: 'me-2'
+    span.me-2 = comment.author.email
+    span.fs-6.text-muted = comment.created_at.strftime '%d %b., %H:%M'
+  .card-body.border-0
+    = comment.content
+  .card-footer.border-0
+    - if user_signed_in?
+      a.fs-6.text-decoration-underline.text-lowercase type='button' aria_expanded="false" aria_controls="#response_comment-#{comment.id}" data-bs-target="#response_comment-#{comment.id}" data-bs-toggle="collapse" href="#" Ответить
+      . id="response_comment-#{comment.id}" class = "ms-2 collapse"
+        = render partial: 'comments/form', locals: { parent: comment }
+  - if comment.has_children?
+    .ms-4
+      - comment.children.each do |child|
+        = render partial: 'comments/card', locals: { comment: child }

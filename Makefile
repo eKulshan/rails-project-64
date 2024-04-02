@@ -4,6 +4,9 @@ start:
 
 setup: install db-prepare
 
+debug:
+	bundle exec rdbg --open -n -c -- bundle exec rails s
+
 install:
 	bin/setup
 

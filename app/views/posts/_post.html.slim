@@ -1,14 +1,12 @@
-p
-  strong
-    | Title:
-  = post.title
-p
-  strong
-    | Body:
-  = post.body
-p
-  strong
-    | Category: = post.category.name
-p
-  strong
-    | Creator: = post.creator.email
+article.col-12
+  h1.mb-4.mb-l-5 = post.title
+  p
+  p = post.body
+  p
+  .d-flex.justify-content-between.mt-5
+      #post-section
+        span.me-2 = post.creator.email
+        span = time_ago_in_words post.created_at
+      #likes-section
+        span.me-2 like-count(TODO)
+        span.me-2 like(TODO)
