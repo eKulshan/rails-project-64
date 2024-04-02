@@ -4,4 +4,4 @@
 
 # Collective blog
 
-[Homepage](https://collective-blog-niaq.onrender.com/)
+[Homepage](https://collective-blog-ltel.onrender.com/)

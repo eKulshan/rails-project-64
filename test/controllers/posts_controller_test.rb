@@ -3,11 +3,11 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers # Rails >= 5
+  include Devise::Test::IntegrationHelpers
 
   setup do
-    @user = users(:one)
-    @post = posts(:one)
+    @user = users(:first)
+    @post = posts(:first)
   end
 
   test 'should get index' do

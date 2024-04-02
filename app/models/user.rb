@@ -7,5 +7,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy, class_name: 'PostComment'
   validates :email, :password, presence: true
 end

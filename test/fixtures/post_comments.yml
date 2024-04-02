@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+root_comment1:
+  content: root comment
+  post: first
+  author: first
+  ancestry: /
+
+root_comment2:
+  content: root comment
+  post: first
+  author: second
+  ancestry: /
+
+nested_comment1:
+  content: nested comment
+  post: first
+  author: second
+  ancestry: <%= "/#{ActiveRecord::FixtureSet.identify(:root_comment_1)}/"  %>
+
+nested_comment2:
+  content: nested comment
+  author: first
+  post: first
+  ancestry: <%= ActiveRecord::FixtureSet.identify(:root_comment_1) %>
+
+deep_nested_comment1:
+  content: deep nested comment
+  author: first
+  post: first
+  ancestry: <%= "/#{ActiveRecord::FixtureSet.identify(:root_comment_1)}/#{ActiveRecord::FixtureSet.identify(:nested_comment_1)}/" %>
