@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show]
+  before_action :set_post, :set_user_like, only: %i[show]
 
   # GET /posts or /posts.json
   def index
@@ -36,6 +36,10 @@ class PostsController < ApplicationController
     @post = Post.includes(:comments).find(params[:id])
     @post.comments.arrange
     @post
+  end
+
+  def set_user_like
+    @user_like = user_signed_in? ? current_user.likes.find_by({ post_id: params[:id] }) : nil
   end
 
   # Only allow a list of trusted parameters through.
