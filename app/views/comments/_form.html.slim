@@ -2,4 +2,4 @@
   = f.input :content, label: false
   - if local_assigns.key? :parent
     = f.input :parent_id, as: :hidden, input_html: { value: parent.id }
-  = f.button :submit, 'Оставить комментарий', class: 'btn-primary mt-2'
+  = f.button :submit, t('simple_form.comment.comment'), class: 'btn-primary mt-2'

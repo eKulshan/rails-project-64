@@ -1,31 +1,5 @@
-/ = form_with(model: post) do |form|
-/   - if post.errors.any?
-/     div[style="color: red"]
-
-/     h2
-/       = pluralize(post.errors.count, "error")
-/       |  prohibited this post from being saved:
-/     ul
-/       - post.errors.each do |error|
-/         li
-/           = error.full_message
-/   div
-/     = form.label :title, style: "display: block"
-/     = form.text_field :title
-/   div
-/     = form.label :body, style: "display: block"
-/     = form.text_field :body
-/   div
-/     = form.label :category_id, style: "display: block"
-/     = form.text_field :category_id
-/   div
-/     = form.label :creator_id, style: "display: block"
-/     = form.text_field :creator_id
-/   div
-/     = form.submit
-
 = simple_form_for @post do |f|
-  = f.input :title, label: 'Заголовок', hint: 'От 5 до 255 символов'
-  = f.association :category, label: 'Категория'
-  = f.input :body, as: 'text', label: 'Содержание', hint: 'От 200 до 4000 символов', input_html: { rows: 10 }
-  = f.button :submit, 'Опубликовать', class: 'btn-primary mt-3'
+  = f.input :title, hint: t('simple_form.hint.length', min: 5, max: 255)
+  = f.association :category, required: true
+  = f.input :body, as: 'text', hint: t('simple_form.hint.length', min: 200, max: 4000), input_html: { rows: 10 }
+  = f.button :submit, t('simple_form.post.publish'), class: 'btn-primary mt-3'

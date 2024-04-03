@@ -1,0 +1,15 @@
+en:
+  shared:
+    sign_in: Sign in
+    sign_up: Sign up
+    new_post: New post
+    logout: Logout
+  post:
+    index:
+      title: Collective blog
+    show:
+      all_posts_link: All posts
+      comments: Comments
+    new:
+      title: New post
+    liked: Liked

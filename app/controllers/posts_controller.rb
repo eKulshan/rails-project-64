@@ -22,8 +22,9 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to post_url(@post), notice: I18n.t('posts.create.success') }
+        format.html { redirect_to post_url(@post), notice: I18n.t('simple_form.post.create.success') }
       else
+        flash.now[:error] = I18n.t('simple_form.post.create.fail')
         format.html { render :new, status: :unprocessable_entity }
       end
     end

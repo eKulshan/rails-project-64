@@ -7,7 +7,14 @@
     = comment.content
   .card-footer.border-0
     - if user_signed_in?
-      a.fs-6.text-decoration-underline.text-lowercase type='button' aria_expanded="false" aria_controls="#response_comment-#{comment.id}" data-bs-target="#response_comment-#{comment.id}" data-bs-toggle="collapse" href="#" Ответить
+      a.fs-6.text-decoration-underline.text-lowercase [
+        type='button' aria_expanded="false"
+        aria_controls="#response_comment-#{comment.id}"
+        data-bs-target="#response_comment-#{comment.id}"
+        data-bs-toggle="collapse"
+        href="#"
+      ]
+        = t('simple_form.comment.reply')
       . id="response_comment-#{comment.id}" class = "ms-2 collapse"
         = render partial: 'comments/form', locals: { parent: comment }
   - if comment.has_children?

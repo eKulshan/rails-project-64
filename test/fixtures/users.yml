@@ -6,7 +6,9 @@
 #
 first: 
   email: user1@mail.com
+  password: secret
 
 second:
   email: user2@mail.com
+  password: secret
 
