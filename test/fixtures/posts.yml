@@ -2,12 +2,12 @@
 
 first:
   title: MyString
-  body: MyString
+  body: <%= "post body " * 25 %>
   category: first
   creator: first
 
 second:
   title: MyString
-  body: MyString
+  body: <%= "post body " * 25 %>
   category: second
   creator: second
