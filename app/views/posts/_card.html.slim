@@ -6,5 +6,5 @@
       .card-text.mb-2 = post.body.truncate(300, omission: '...')
       .text-right.small.text-muted.mt-auto
         span.me-2 = "#{t('post.liked')}: #{post.likes.size}"
-        span.me-2 = post.created_at
+        span.me-2 = time_ago_in_words post.created_at
         span = post.creator.email

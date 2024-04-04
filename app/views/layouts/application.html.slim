@@ -15,10 +15,6 @@ html lang='en'
       .d-flex.flex-wrap.align-items-center.py-2.border-bottom
         = link_to image_tag('logo.jpg', width: '30', alt: 'logo.jpg'), root_path, class: 'navbar navbar-expand-md navbar-light me-auto'
         .ul.nav
-          li.nav-item.d-flex.align-items-center
-            - I18n.available_locales.without(I18n.locale).each do |locale|
-              = link_to url_for(locale:) do
-                = image_tag asset_path("flag-#{locale}.svg"), width: 25, alt: "switch language to #{locale}"
           - if user_signed_in?
             li.nav-item
               p.nav-link.disabled = current_user.email
