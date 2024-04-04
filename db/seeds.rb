@@ -31,13 +31,13 @@ posts = Post.create([
                       }
                     ])
 comments = PostComment.create([
-                                { content: 'root comment', post: posts.first, author: users.first },
-                                { content: 'root comment', post: posts.first, author: users.second }
+                                { content: 'root comment', post: posts.first, user: users.first },
+                                { content: 'root comment', post: posts.first, user: users.second }
                               ])
 nested_comments = comments.first.children.create([
-                                                   { content: 'nested comment', post: posts.first, author: users.second },
-                                                   { content: 'nested comment', post: posts.first, author: users.second }
+                                                   { content: 'nested comment', post: posts.first, user: users.second },
+                                                   { content: 'nested comment', post: posts.first, user: users.second }
                                                  ])
 nested_comments.first.children.create([
-                                        { content: 'deep nested comment', post: posts.first, author: users.first }
+                                        { content: 'deep nested comment', post: posts.first, user: users.first }
                                       ])
