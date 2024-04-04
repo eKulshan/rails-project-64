@@ -14,7 +14,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create comment' do
     assert_difference('PostComment.count') do
-      post post_comments_path(@post), params: { comment: { content: @root_comment.content, post_id: @post.id } }
+      post post_comments_path(@post), params: { post_comment: { content: @root_comment.content } }
     end
 
     assert_redirected_to post_url(@post)
@@ -22,7 +22,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create nested comment' do
     assert_difference('PostComment.count') do
-      post post_comments_path(@post), params: { comment: { content: @nested_comment.content, post_id: @post.id, parent_id: ActiveRecord::FixtureSet.identify(:root_comment1) } }
+      post post_comments_path(@post), params: { post_comment: { content: @nested_comment.content, parent_id: ActiveRecord::FixtureSet.identify(:root_comment1) } }
     end
 
     assert_redirected_to post_url(@post)
