@@ -34,9 +34,7 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.includes(:comments).find(params[:id])
-    @post.comments.arrange
-    @post
+    @post = Post.find(params[:id])
   end
 
   def set_user_like

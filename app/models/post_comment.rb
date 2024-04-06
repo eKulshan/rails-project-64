@@ -7,6 +7,4 @@ class PostComment < ApplicationRecord
   belongs_to :user, inverse_of: 'comments'
 
   validates :content, length: { in: 5..400 }
-
-  default_scope { order(created_at: :desc) }
 end

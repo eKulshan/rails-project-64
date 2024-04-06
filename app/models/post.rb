@@ -6,7 +6,6 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy, class_name: 'PostComment', inverse_of: 'post'
   has_many :likes, dependent: :destroy, class_name: 'PostLike', inverse_of: 'post'
 
-  validates :title, :body, presence: true
-  validates :title, length: { in: 5..255 }
-  validates :body, length: { in: 200..4000 }
+  validates :title, presence: true, length: { minimum: 5, maximum: 255 }
+  validates :body, presence: true, length: { minimum: 200, maximum: 4000 }
 end
