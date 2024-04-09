@@ -17,7 +17,7 @@
         = t('simple_form.comment.reply')
       . id="response_comment-#{comment.id}" class = "ms-2 collapse"
         = render partial: 'comments/form', locals: { parent: comment }
-  - if comment.has_children?
+  - if local_assigns.key? :children
     .ms-4
-      - comment.children.each do |child|
-        = render partial: 'comments/card', locals: { comment: child }
+      - children.each do |comment, children|
+        = render partial: 'comments/card', locals: { comment:, children: }

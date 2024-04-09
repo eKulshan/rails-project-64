@@ -8,6 +8,5 @@ ol.breadcrumb
   span = t('post.show.comments')
   - if user_signed_in?
     = render 'comments/form'
-  - @post.comments.roots.each do |comment|
-    - if comment.persisted?
-      = render partial: 'comments/card', locals: { comment: }
+  - @comments.each do |comment, children|
+    = render partial: 'comments/card', locals: { comment:, children: }

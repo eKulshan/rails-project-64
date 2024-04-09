@@ -8,4 +8,10 @@ class Post < ApplicationRecord
 
   validates :title, presence: true, length: { minimum: 5, maximum: 255 }
   validates :body, presence: true, length: { minimum: 200, maximum: 4000 }
+
+  def like_by_user(current_user)
+    return nil if current_user.nil?
+
+    likes.find_by({ user_id: current_user.id })
+  end
 end
