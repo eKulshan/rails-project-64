@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, :set_user_like, only: %i[show]
+  before_action :authenticate_user!, only: %i[new create]
 
-  # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.includes(:creator).all
   end
 
-  # GET /posts/1 or /posts/1.json
-  def show; end
+  def show
+    @post = Post.find(params[:id])
+    @comments = @post.comments.includes(:user).arrange(order: { created_at: :desc })
+    @user_like = @post.like_by_user(current_user)
+  end
 
   # GET /posts/new
   def new
@@ -22,8 +24,9 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to post_url(@post), notice: I18n.t('posts.create.success') }
+        format.html { redirect_to post_url(@post), notice: I18n.t('simple_form.post.create.success') }
       else
+        flash.now[:error] = I18n.t('simple_form.post.create.fail')
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -31,18 +34,6 @@ class PostsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_post
-    @post = Post.includes(:comments).find(params[:id])
-    @post.comments.arrange
-    @post
-  end
-
-  def set_user_like
-    @user_like = user_signed_in? ? current_user.likes.find_by({ post_id: params[:id] }) : nil
-  end
-
-  # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:title, :body, :category_id, :user_id)
   end

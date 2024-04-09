@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :set_post, only: %i[create]
+  before_action :authenticate_user!, only: :create
+  before_action :set_post, only: :create
 
   def create
-    @root_comment = @post.comments.new({ **comment_params, user_id: current_user.id })
+    @root_comment = @post.comments.build(comment_params)
+    @root_comment.user = current_user
 
     respond_to do |format|
       if @root_comment.save
@@ -22,6 +24,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:content, :parent_id)
+    params.require(:post_comment).permit(:content, :parent_id)
   end
 end

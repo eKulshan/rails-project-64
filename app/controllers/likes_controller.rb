@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_post, only: %i[create]
   # TODO: add before action with user login required
   def create
@@ -16,7 +18,9 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = current_user.likes.find(params[:id])
+    @like = current_user.likes.find_by(id: params[:id])
+    return redirect_to post_url(params[:post_id]) if @like.nil?
+
     respond_to do |format|
       if @like.destroy
         format.html { redirect_to post_url(params[:post_id]) }

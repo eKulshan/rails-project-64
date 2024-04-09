@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePostLikes < ActiveRecord::Migration[7.1]
   def change
     create_table :post_likes do |t|
@@ -6,7 +8,7 @@ class CreatePostLikes < ActiveRecord::Migration[7.1]
 
       t.timestamps
 
-      t.index [:post_id, :user_id], unique: true, name: 'uniq_post_like_per_user'
+      t.index %i[post_id user_id], unique: true, name: 'uniq_post_like_per_user'
     end
   end
 end

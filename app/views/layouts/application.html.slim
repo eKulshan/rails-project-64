@@ -13,16 +13,16 @@ html lang='en'
   body.d-flex.flex-column.h-100
     .container.mb-2
       .d-flex.flex-wrap.align-items-center.py-2.border-bottom
-        .navbar.navbar-expand-md.navbar-light.me-auto: a href='/': img width='30' src='/assets/logo.jpg' alt='logo.jpg'
-        .ul.nav.nav-pills
+        = link_to image_tag('logo.jpg', width: '30', alt: 'logo.jpg'), root_path, class: 'navbar navbar-expand-md navbar-light me-auto'
+        .ul.nav
           - if user_signed_in?
-            li.nav-item.me-2
+            li.nav-item
               p.nav-link.disabled = current_user.email
-            li.nav-item.me-2 = link_to 'Новый пост', new_post_path, class: 'nav-link link-dark'
-            li.nav-item.me-2 = link_to 'Выйти', destroy_user_session_path, data: { 'turbo-method': :delete }, class: 'nav-link link-dark'
+            li.nav-item = link_to t('shared.new_post'), new_post_path, class: 'nav-link link-dark'
+            li.nav-item = link_to t('shared.logout'), destroy_user_session_path, data: { 'turbo-method': :delete }, class: 'nav-link link-dark'
           - else
-            li.nav-item.me-2 = link_to 'Войти', new_user_session_path, class: 'nav-link link-dark'
-            li.nav-item.me-2 = link_to 'Зарегистрироваться', new_user_registration_path, class: 'nav-link link-dark'
+            li.nav-item = link_to t('shared.sign_in'), new_user_session_path, class: 'nav-link link-dark'
+            li.nav-item = link_to t('shared.sign_up'), new_user_registration_path, class: 'nav-link link-dark'
 
     .container.mb-4
       - if flash.any?
@@ -33,6 +33,9 @@ html lang='en'
               = msg
           - when 'notice'
             .alert.alert-success
+              = msg
+          - when 'error'
+            .alert.alert-danger
               = msg
           - else
             p = "Unhandled notice: #{type} - #{msg}"
