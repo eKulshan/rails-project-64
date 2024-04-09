@@ -6,5 +6,5 @@ class PostComment < ApplicationRecord
   belongs_to :post, inverse_of: 'comments'
   belongs_to :user, inverse_of: 'comments'
 
-  validates :content, length: { in: 5..400 }
+  validates :content, length: { minimum: 5, maximum: 400 }
 end
