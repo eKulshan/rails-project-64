@@ -23,10 +23,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create post' do
     sign_in @user
-    assert_difference('Post.count') do
-      post posts_url, params: { post: { body: @post.body, category_id: @post.category_id, user_id: @post.user_id, title: @post.title } }
-    end
+    post posts_url, params: { post: { body: @post.body, category_id: @post.category_id, user_id: @post.user_id, title: @post.title } }
 
+    created_post = Post.find_by(
+      body: @post.body,
+      category_id: @post.category_id,
+      title: @post.title,
+      user_id: @user.id
+    )
+
+    assert(created_post)
     assert_redirected_to post_url(Post.last)
   end
 

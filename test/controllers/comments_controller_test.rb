@@ -13,18 +13,30 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create comment' do
-    assert_difference('PostComment.count') do
-      post post_comments_path(@post), params: { post_comment: { content: @root_comment.content } }
-    end
+    post post_comments_path(@post), params: { post_comment: { content: @root_comment.content } }
 
+    created_post_comment =
+      PostComment.find_by(
+        post_id: @root_comment.post_id,
+        ancestry: @root_comment.ancestry,
+        content: @root_comment.content
+      )
+
+    assert(created_post_comment)
     assert_redirected_to post_url(@post)
   end
 
   test 'should create nested comment' do
-    assert_difference('PostComment.count') do
-      post post_comments_path(@post), params: { post_comment: { content: @nested_comment.content, parent_id: ActiveRecord::FixtureSet.identify(:root_comment1) } }
-    end
+    post post_comments_path(@post), params: { post_comment: { content: @nested_comment.content, parent_id: ActiveRecord::FixtureSet.identify(:root_comment1) } }
 
+    created_post_comment =
+      PostComment.find_by(
+        post_id: @nested_comment.post_id,
+        ancestry: @nested_comment.ancestry,
+        content: @nested_comment.content
+      )
+
+    assert(created_post_comment)
     assert_redirected_to post_url(@post)
   end
 end

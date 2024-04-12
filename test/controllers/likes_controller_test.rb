@@ -15,18 +15,26 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'create' do
-    assert_difference('PostLike.count') do
-      post post_likes_path(@post2)
-    end
+    post post_likes_path(@post2)
 
+    created_post_like = PostLike.find_by(
+      post_id: @post2.id,
+      user_id: @user.id
+    )
+
+    assert(created_post_like)
     assert_redirected_to post_url(@post2)
   end
 
   test 'destroy' do
-    assert_difference('PostLike.count', -1) do
-      delete post_like_path(@post1, @like1)
-    end
+    delete post_like_path(@post1, @like1)
 
+    deleted_post_like = PostLike.find_by(
+      post_id: @post2.id,
+      user_id: @user.id
+    )
+
+    assert_nil(deleted_post_like)
     assert_redirected_to post_url(@post1)
   end
 

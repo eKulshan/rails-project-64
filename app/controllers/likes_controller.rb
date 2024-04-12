@@ -2,9 +2,8 @@
 
 class LikesController < ApplicationController
   before_action :authenticate_user!
-
   before_action :set_post, only: %i[create]
-  # TODO: add before action with user login required
+
   def create
     @like = @post.likes.new({ user_id: current_user.id })
 
