@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       if @root_comment.save
         format.html { redirect_to post_url(@post), notice: I18n.t('comments.create.success') }
       else
-        format.html { redirect_to post_url(@post), notice: @root_comment.errors.full_messages }
+        format.html { redirect_to post_url(@post), error: @root_comment.errors.full_messages.join(".\n") }
       end
     end
   end

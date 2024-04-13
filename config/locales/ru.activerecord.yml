@@ -19,8 +19,8 @@ ru:
         title: Заголовок
         body: Содержание
         category: Категория
-      post/comment:
-        body: Содержание
+      post_comment:
+        content: Тело
       category:
         title: Категория
 
